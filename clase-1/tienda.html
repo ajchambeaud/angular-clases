@@ -1,4 +1,4 @@
-<html>
+<html ng-app="tienda">
     <head>
         <title>Tienda RPG</title>
         <script src="bower_components/angular/angular.min.js"></script>
@@ -31,15 +31,11 @@
             }
         </style>
         
-        <script>
-            
-          
-          
-        </script>
+        <script src="tienda.js"></script>
        
     </head>
     <body>
-        <div class="container">
+        <div ng-controller="MainController as main" class="container">
             <br />
             
             <div class="row">
@@ -57,14 +53,18 @@
                                   <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-search"></span>
                                   </span>
-                                  <input type="text" class="form-control" placeholder="Buscar">
+                                  <input ng-model="main.tiendaFiltro.name"
+                                         type="text" 
+                                         class="form-control" 
+                                         placeholder="Buscar">
                                 </div>
                               </div>
                               <!-- </BOX_TIENDA_INPUT_BUSQUEDA> -->    
                               <!-- <BOX_TIENDA_SELECT_ALL> -->  
-                              <button class="btn btn-default">
+                              <button ng-click="main.toggleLista(main.listaTienda)" class="btn btn-default">
                                   &nbsp;
-                                  <i class="glyphicon glyphicon-check"></i>
+                                  <i ng-class="main.listaTienda.selected ? 'glyphicon-check' : 'glyphicon-unchecked'" 
+                                     class="glyphicon"></i>
                                   &nbsp;
                               </button>
                               <!-- </BOX_TIENDA_SELECT_ALL> -->
@@ -75,17 +75,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group">
-                                <li class="list-group-item active">
-                                    Phage
-                                </li>
-                                <li class="list-group-item">
-                                    Pickaxe
-                                </li> 
-                                <li class="list-group-item">
-                                    Archangel's Staff
-                                </li>                                 
-                                <li class="list-group-item">
-                                    Tear of the Goddess
+                                <li ng-click="main.toggleSelect(item)"
+                                    ng-repeat="item in main.listaTienda | filter:main.tiendaFiltro"
+                                    ng-class="{ 'active' : item.selected }"
+                                    class="list-group-item">
+                                  {{item.name | uppercase}}
                                 </li>                                                                                                    
                             </ul>
                         </div>   
@@ -124,7 +118,10 @@
                               <!-- <BOX_USUARIO_INPUT_BUSQUEDA> -->    
                               <div class="form-group">
                                 <div class="input-group busqueda-group">
-                                  <input type="text" class="form-control" placeholder="Buscar">
+                                  <input ng-model="main.filtroEquipo.name"
+                                         type="text" 
+                                         class="form-control" 
+                                         placeholder="Buscar">
                                   <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-search"></span>
                                   </span>
@@ -138,9 +135,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group">
-                                <li class="list-group-item active">
-                                    Cloak of Agility
-                                </li>
+                                <li ng-repeat="item in main.listaEquipo | filter:main.filtroEquipo"
+                                    class="list-group-item">
+                                  {{item.name}}
+                                </li> 
                             </ul>
                         </div>   
                     </div>

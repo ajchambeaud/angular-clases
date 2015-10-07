@@ -1,4 +1,4 @@
-<html>
+<html ng-app="app">
     <head>
         <title>Clase 1 - AngularJS</title>
         <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -8,38 +8,36 @@
             }
         </style>
         <script src="bower_components/angular/angular.min.js"></script>
-        <script>
-          
-        </script>
+        <script src="app.js"></script>
     </head>
     <body>
-        <div id="container" class="container">
+        <div ng-controller="MainController as main" id="container" class="container">
             
-            <h1>Intro AngularJS</h1>
+            <h1>{{main.mainTitle}}: Intro AngularJS</h1>
             
             
-            <div class="panel panel-default">
+            <div ng-controller="ParentController as parent" class="panel panel-default">
             
                 <div class="panel-heading">
-                  Main
+                  {{parent.name}}
                 </div>
                 
                 <div class="panel-body">
                     
-                    <input type="text" class="form-control"/>
+                    <input ng-model="parent.title" type="text" class="form-control"/>
                     
-                    <h1>Main Panel</h1>
+                    <h1>{{parent.title}}</h1>
                     
                 </div>
                 
                 
-                <div class="panel panel-default">
+                <div ng-controller="ChildController as child" class="panel panel-default">
                     <div class="panel-heading">
-                        Child
+                        {{child.name}}
                     </div>
                     <div class="panel-body">
-                        <input type="text" class="form-control"/>
-                        <h1>Child Panel</h1>
+                        <input ng-model="child.title" type="text" class="form-control"/>
+                        <h1>{{child.title}}</h1>
                     </div>                 
                 </div>
             </div>
