@@ -31,8 +31,10 @@
             }
         </style>
         
-        <script src="tienda.js"></script>
-       
+        <script src="app/tienda.js"></script>
+        <script src="app/controllers.js"></script>
+        <script src="app/directives.js"></script>
+        <script src="app/filters.js"></script>
     </head>
     <body>
         <div ng-controller="MainController as main" class="container">
@@ -79,7 +81,8 @@
                                     ng-repeat="item in main.listaTienda | filter:main.tiendaFiltro"
                                     ng-class="{ 'active' : item.selected }"
                                     class="list-group-item">
-                                  {{item.name | uppercase}}
+                                  {{item.name | uppercase | cut:5:'......' }} 
+                                  <span class="cost">{{ item.cost | dolar }}</span>
                                 </li>                                                                                                    
                             </ul>
                         </div>   
@@ -91,11 +94,13 @@
                 
                 <!-- <MOVE_BUTTONS> -->
                 <div class="list-arrows col-md-1 text-center">
-                    <button class="btn btn-default btn-sm move-left">
+                    <button ng-click="main.move(main.listaEquipo, main.listaTienda)"
+                            class="btn btn-default btn-sm move-left">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </button>
 
-                    <button class="btn btn-default btn-sm move-right">
+                    <button ng-click="main.move(main.listaTienda, main.listaEquipo)"
+                            class="btn btn-default btn-sm move-right">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </button>
                 </div>
@@ -109,9 +114,10 @@
                         <div class="col-md-12">
                             <form class="form-inline">
                               <!-- <BOX_USUARIO_SELECT_ALL> -->
-                              <button class="btn btn-default">
+                              <button ng-click="main.toggleLista(main.listaEquipo)" class="btn btn-default">
                                   &nbsp;
-                                  <i class="glyphicon glyphicon-unchecked"></i>
+                                  <i ng-class="main.listaEquipo.selected ? 'glyphicon-check' : 'glyphicon-unchecked'" 
+                                     class="glyphicon"></i>
                                   &nbsp;
                               </button>
                               <!-- </BOX_USUARIO_SELECT_ALL> -->
@@ -135,10 +141,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group">
-                                <li ng-repeat="item in main.listaEquipo | filter:main.filtroEquipo"
+                                <li ng-click="main.toggleSelect(item)"
+                                    ng-repeat="item in main.listaEquipo | filter:main.filtroEquipo"
+                                    ng-class="{ 'active' : item.selected }"
                                     class="list-group-item">
-                                  {{item.name}}
-                                </li> 
+                                  {{item.name | uppercase}}
+                                </li>      
                             </ul>
                         </div>   
                     </div>
