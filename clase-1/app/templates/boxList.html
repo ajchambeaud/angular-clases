@@ -1,0 +1,11 @@
+<ul class="list-group">
+	<li ng-click="toggle(item)"
+		ng-repeat="item in lista | filter:filtro"
+		ng-class="{ 'active' : item.selected }"
+		class="list-group-item">
+    
+	    {{item.name | uppercase | cut:5:'......' }} 
+	    
+	  <span class="cost">{{ item.cost | dolar }}</span>
+	</li>                                                                                                  
+</ul>

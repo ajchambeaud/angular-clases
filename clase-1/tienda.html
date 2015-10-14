@@ -37,13 +37,13 @@
         <script src="app/filters.js"></script>
     </head>
     <body>
-        <div ng-controller="MainController as main" class="container">
+        <container ng-controller="MainController as main">
             <br />
             
-            <div class="row">
+            <row>
                 
                 <!-- <BOX_TIENDA> -->
-                <div class="dual-list list-left col-md-5">
+                <col md="5" class="dual-list list-left">
 		        <h2>Tienda</h2>
                 <div class="well text-right">
                     <div class="row">
@@ -62,30 +62,18 @@
                                 </div>
                               </div>
                               <!-- </BOX_TIENDA_INPUT_BUSQUEDA> -->    
-                              <!-- <BOX_TIENDA_SELECT_ALL> -->  
-                              <button ng-click="main.toggleLista(main.listaTienda)" class="btn btn-default">
-                                  &nbsp;
-                                  <i ng-class="main.listaTienda.selected ? 'glyphicon-check' : 'glyphicon-unchecked'" 
-                                     class="glyphicon"></i>
-                                  &nbsp;
-                              </button>
-                              <!-- </BOX_TIENDA_SELECT_ALL> -->
+                              <select-all-button lista="main.listaTienda" toggle="main.toggleLista(lista)"></select-all-button>  
                             </form>
                         </div>
                     </div>
                     <!-- <BOX_TIENDA_LISTADO> -->  
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="list-group">
-                                <li ng-click="main.toggleSelect(item)"
-                                    ng-repeat="item in main.listaTienda | filter:main.tiendaFiltro"
-                                    ng-class="{ 'active' : item.selected }"
-                                    class="list-group-item">
-                                  {{item.name | uppercase | cut:5:'......' }} 
-                                  <span class="cost">{{ item.cost | dolar }}</span>
-                                </li>                                                                                                    
-                            </ul>
-                        </div>   
+                           <box-list lista="main.listaTienda" 
+                                     toggle="main.toggleSelect"
+                                     filtro="main.tiendaFiltro">
+                           </box-list>
+                        </div>
                     </div>
                     <!-- </BOX_TIENDA_LISTADO> -->
                 </div>
@@ -113,14 +101,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form class="form-inline">
-                              <!-- <BOX_USUARIO_SELECT_ALL> -->
-                              <button ng-click="main.toggleLista(main.listaEquipo)" class="btn btn-default">
-                                  &nbsp;
-                                  <i ng-class="main.listaEquipo.selected ? 'glyphicon-check' : 'glyphicon-unchecked'" 
-                                     class="glyphicon"></i>
-                                  &nbsp;
-                              </button>
-                              <!-- </BOX_USUARIO_SELECT_ALL> -->
+                              <select-all-button lista="main.listaEquipo" toggle="main.toggleLista(lista)"></select-all-button>  
+
                               <!-- <BOX_USUARIO_INPUT_BUSQUEDA> -->    
                               <div class="form-group">
                                 <div class="input-group busqueda-group">
@@ -140,14 +122,10 @@
                     <!-- <BOX_USUARIO_LISTADO> -->
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="list-group">
-                                <li ng-click="main.toggleSelect(item)"
-                                    ng-repeat="item in main.listaEquipo | filter:main.filtroEquipo"
-                                    ng-class="{ 'active' : item.selected }"
-                                    class="list-group-item">
-                                  {{item.name | uppercase}}
-                                </li>      
-                            </ul>
+                           <box-list lista="main.listaEquipo" 
+                                     toggle="main.toggleSelect"
+                                     filtro="main.filtroEquipo">
+                           </box-list>
                         </div>   
                     </div>
                     <!-- </BOX_USUARIO_LISTADO> -->
@@ -155,8 +133,8 @@
                 </div>
                 <!-- </BOX_USUARIO> -->
                 
-            </div>
-        </div>
+            </row>
+        </container>
     </body>
 </html>
 

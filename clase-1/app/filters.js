@@ -6,4 +6,12 @@ angular.module("tienda")
 			return text.substring(0, max) + separador;
 		}
 	
+    })
+
+    .filter("dolar", function(){
+		
+		return function(text){
+			return "U$S " + text;
+		}
+	
     });

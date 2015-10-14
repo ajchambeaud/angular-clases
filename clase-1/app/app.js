@@ -8,6 +8,10 @@ app.controller("MainController", function($scope){
   */
   
   this.mainTitle = "Clase 1";
+	
+  this.popup = function(msg){
+  	alert(msg);
+  };
 
 });
 
@@ -24,3 +28,53 @@ app.controller("ChildController", function($scope){
   this.title = "Child Value";
 
 });
+
+app.directive("myButton", function(){
+
+	return {
+		
+		transclude : false,
+	
+		restrict : "AE",
+		
+		templateUrl : "app/templates/myButton.html",
+		
+		scope : {
+			text : "=",
+			action : "&"
+		},
+		
+		link : function(scope, element, attrs){
+			console.log(scope);
+			console.log(attrs);
+			
+			element.on("mouseover", function(){
+				element.find('button').addClass("my-button-hover");
+			});
+			
+			element.on("mouseout", function(){
+				element.find('button').removeClass("my-button-hover");
+			});
+		}
+	
+	}
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

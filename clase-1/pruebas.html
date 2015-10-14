@@ -6,15 +6,21 @@
             #container .panel{
                 margin: 20px;
             }
+			.my-button-hover{
+				background-color: aqua;
+			}
         </style>
         <script src="bower_components/angular/angular.min.js"></script>
-        <script src="app.js"></script>
+        <script src="app/app.js"></script>
     </head>
     <body>
         <div ng-controller="MainController as main" id="container" class="container">
-            
+             
+            <my-button class="algo" 
+            	       action="main.popup(txt)" 
+                       text="main.mainTitle"></my-button>
+           
             <h1>{{main.mainTitle}}: Intro AngularJS</h1>
-            
             
             <div ng-controller="ParentController as parent" class="panel panel-default">
             
