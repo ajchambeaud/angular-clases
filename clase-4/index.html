@@ -1,0 +1,99 @@
+<html lang="es" ng-app="backendEcommerce">
+    <head>
+        <title>Clase 3 - AngularJS</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="bower_components/angular/angular.min.js"></script>
+        
+        <script src="app/app.js"></script>
+        
+        <script src="app/controllers/MainController.js"></script>
+        <script src="app/controllers/CategoriasController.js"></script>
+        <script src="app/controllers/ProductosController.js"></script>
+        
+        <script src="app/services/CategoriaService.js"></script>
+        <script src="app/services/ProductoService.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        
+        <style>
+        body { padding-top: 70px; }
+        </style>
+    </head>
+    <body>
+        <div id="container" ng-controller="MainController as main">
+            
+            <!-- <Menu> -->
+            
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                <div class="collapse navbar-collapse">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+						{{main.brand}}
+                    </a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li><a href="#">Categorías</a></li>
+                    <li><a href="#">Productos</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            
+            <!-- </Menu> -->
+            
+            <!-- <Categorias> -->
+            
+            <div class="container" ng-controller="CategoriasController as cat">
+                
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="btn-group" role="group" aria-label="...">
+                          <button type="button" class="btn btn-default">Nueva Categoría</button>
+                          <button ng-disabled="!cat.selected" type="button" class="btn btn-default">Editar Categoría</button>
+                          <button ng-disabled="!cat.selected" type="button" class="btn btn-default">Eliminar Categoría</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-12"><hr/></div>
+                </div>
+                
+                <div class="row">
+                    
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                          <li ng-repeat="categoria in cat.categorias"
+                              ng-click="cat.select(categoria)"
+                              ng-class="{active : cat.isSelected(categoria)}"
+                              class="list-group-item">
+							  {{ categoria.categoria_desc }}
+                          </li>                          
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-1"></div>
+                    
+                    <div class="col-md-6">
+                        <h2>Nueva Categoría</h2>
+                        <div>
+                              <div class="form-group">
+                                <label>Descripcion</label>
+                                <input type="text" class="form-control" placeholder="Descripcion de la categoría">
+                              </div>
+                              <button class="btn btn-default">Guardar</button>
+                        </div>
+                    </div>
+                                     
+                    
+                </div>
+                
+            </div>
+
+            <!-- </Categorias> -->
+
+            
+        </div>
+    </body>
+</html>
