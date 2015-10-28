@@ -1,0 +1,59 @@
+<html lang="es" ng-app="backendEcommerce">
+    <head>
+        <title>Clase 3 - AngularJS</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+       
+        <script src="app/app.js"></script>
+        
+        <script src="app/categorias/Categorias.js"></script>
+        <script src="app/categorias/CategoriasController.js"></script>
+        
+        <script src="app/productos/Productos.js"></script>
+        <script src="app/productos/ProductosController.js"></script>
+        
+        <script src="app/common/services/CategoriaService.js"></script>
+        <script src="app/common/services/ProductoService.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        
+        <style>
+        body { padding-top: 70px; }
+        </style>
+    </head>
+    <body>
+        <div id="container" ng-controller="MainController as main">
+            
+            <!-- <Menu> -->
+            
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                <div class="collapse navbar-collapse">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+						{{main.brand}}
+                    </a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li ui-sref-active="active">
+                      <a ui-sref="categorias">Categorías</a>
+                    </li>
+                    <li ui-sref-active="active">
+                      <a ui-sref="productos">Productos</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            
+            <!-- </Menu> -->
+
+            <div class="container" ui-view>
+
+            </div>
+            
+        </div>
+    </body>
+</html>
